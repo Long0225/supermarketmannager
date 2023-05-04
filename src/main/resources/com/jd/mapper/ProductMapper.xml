@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 定义mapper接口路径 -->
+<mapper namespace="com.jd.mapper.ProductMapper">
+    <resultMap id="ProductMap" type="Product">
+        <id column="id" property="id"></id>
+        <result column="code" property="code"></result>
+        <result column="name" property="name"></result>
+        <result column="price" property="price"></result>
+        <result column="stock" property="stock"></result>
+        <result column="category_id" property="category_id"></result>
+        <result column="supplier_id" property="supplier_id"></result>
+        <result column="desc" property="desc"></result>
+        <association property="supplier" javaType="Supplier">
+            <id column="sid" property="id"></id>
+            <result column="supplier_name" property="name"></result>
+        </association>
+        <association property="category" javaType="Category">
+            <id column="cid" property="id"></id>
+            <result column="category_name" property="name"></result>
+        </association>
+    </resultMap>
+
+
+    <!--id的值保证Mapper接口的方法名一值-->
+    <!--List<Order> findAll();-->
+    <select id="findAll" resultMap="ProductMap">
+        SELECT p.*, s.name AS supplier_name, c.name AS category_name,s.id sid,c.id cid
+        FROM t_product p
+                 left JOIN t_supplier s ON p.supplier_id = s.id
+                 left JOIN t_category c ON p.category_id = c.id;
+    </select>
+    <!--Order findOne(Long id);-->
+    <select id="findOne" resultMap="ProductMap">
+        SELECT p.*, s.name AS supplier_name, c.name AS category_name
+        FROM t_product p
+                 left JOIN t_supplier s ON p.supplier_id = s.id
+                 left JOIN t_category c ON p.category_id = c.id
+                 where p.id=#{id}
+    </select>
+    <!--void add(Product product);-->
+    <insert id="add">
+        insert into t_product (`code`, `name`, price, stock, category_id, supplier_id, `desc`)
+        values (#{code}, #{name}, #{price}, #{stock}, #{category_id}, #{supplier_id}, #{desc});
+    </insert>
+    <!--void update(Product product);-->
+    <update id="update">
+        update t_product
+        set `code`  = #{code},
+            `name`  = #{name},
+            price = #{price},
+            stock = #{stock},
+            category_id=#{category_id},
+            supplier_id=#{supplier_id},
+            `desc`=#{desc}
+        where id=#{id};
+    </update>
+    <!--void delete(Long id);-->
+    <delete id="delete">
+        delete
+        from t_product
+        where id=#{id};
+    </delete>
+    <delete id="delByCategoryId">
+        delete
+        from t_product
+        where category_id=#{id};
+    </delete>
+    <!--List<Product> query(ProductQuery productQuery);-->
+    <select id="query" resultMap="ProductMap">
+        SELECT p.*, s.name AS supplier_name, c.name AS category_name,s.id sid,c.id cid
+        FROM t_product p
+        inner JOIN t_supplier s ON p.supplier_id = s.id
+        inner JOIN t_category c ON p.category_id = c.id
+        <where>
+
+        <if test="code != null and code != ''">
+            and p.code like concat('%',#{code},'%')
+        </if>
+        <if test="category_id != null">
+            and p.category_id = #{category_id}
+        </if>
+            <if test="supplier_id != null">
+                and p.supplier_id = #{supplier_id}
+            </if>
+        </where>
+
+    </select>
+</mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 定义mapper接口路径 -->
+<mapper namespace="com.jd.mapper.CategoryMapper">
+
+    <!--id的值保证Mapper接口的方法名一值-->
+   <!-- List<Category> findAll();-->
+    <select id="findAll" resultType="Category">
+        select *from t_category
+    </select>
+    <!--Category findOne(Long id);-->
+    <select id="findOne" resultType="Category">
+        select *from t_category where id=#{id}
+    </select>
+
+    <!--void add(Category category);-->
+    <insert id="add">
+        insert into t_category (`name`, `desc`)
+        values (#{name},#{desc})
+    </insert>
+    <!--void update(Category category);-->
+    <update id="update">
+        update t_category
+        set `name` = #{name},`desc` = #{desc}
+        where id=#{id}
+    </update>
+    <!--void delete(Long id);-->
+    <delete id="delete">
+        delete
+        from t_category
+        where id=#{id}
+    </delete>
+   <!--高级查询 List<Category> query(categoryQuery categoryQuery);-->
+    <select id="query" resultType="Category">
+        select * from t_category
+        <where>
+        <if test="name != null and name != ''">
+            and name like concat('%',#{name},'%')
+        </if>
+        <if test="desc != null">
+            and desc = #{desc}
+        </if>
+        </where>
+    </select>
+</mapper>

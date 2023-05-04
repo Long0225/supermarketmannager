@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 定义mapper接口路径 -->
+<mapper namespace="com.jd.mapper.SystemLogMapper">
+
+    <!--id的值保证Mapper接口的方法名一值-->
+    <!--List<System_log> findAll();-->
+    <select id="findOne" resultMap="findMap">
+        select l.*,a.id aid,a.username aname from t_system_log l
+        left join t_admin a on a.id=l.operation_id where l.id=#{l.id}
+    </select>
+    <!--System_log findOne(Long id);-->
+    <select id="findAll" resultMap="findMap">
+        select l.*,a.id aid,a.username aname from t_system_log l
+        left join t_admin a on a.id=l.operation_id order by l.create_time desc
+    </select>
+    <resultMap id="findMap" type="SystemLog">
+        <id column="id" property="id"></id>
+        <result column="operation_id" property="operation_id"></result>
+        <result column="content" property="content"></result>
+        <result column="create_time" property="create_time"></result>
+        <association property="admin" javaType="Admin">
+            <id column="aid" property="id"></id>
+            <result column="aname" property="username"></result>
+        </association>
+    </resultMap>
+    <!--void add(Supplier supplier);-->
+    <insert id="add">
+        insert into t_system_log (operation_id, content, create_time)
+        values (#{operation_id}, #{content}, #{create_time});
+    </insert>
+    <!--void update(System_log system_log);-->
+    <update id="update">
+        update t_system_log
+        set operation_id = #{operation_id},operation_id = #{content}
+        where id=#{id};
+    </update>
+    <!--void delete(Long id);-->
+    <delete id="delete">
+        delete from t_system_log where id = #{id}
+    </delete>
+</mapper>

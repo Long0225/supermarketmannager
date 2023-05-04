@@ -1,0 +1,17 @@
+server:
+  port: 80
+  servlet:
+      context-path: / #默认的 - 只要是默认都可以不用写
+#连接数据库的四个必要参数
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql:///supermarketmanager?useUnicode=true&characterEncoding=utf8
+mybatis:
+  type-aliases-package: com.jd.domain #配置别名
+  #mapper-locations: classpath:cn/itsource/mapper/*Mapper.xml #约定大于配置 - 可以不写
+logging:
+  level:
+    com.jd: trace #配置日志

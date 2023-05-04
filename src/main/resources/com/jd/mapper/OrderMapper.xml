@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 定义mapper接口路径 -->
+<mapper namespace="com.jd.mapper.OrderMapper">
+    <!--id的值保证Mapper接口的方法名一值-->
+    <select id="findAll" resultMap="OrderMap">
+        select o.*,c.id cid,c.name cname from t_order o
+                                                  left join t_customer c on o.customer_id = c.id
+    </select>
+    <resultMap id="OrderMap" type="Order">
+        <id column="id" property="id"></id>
+        <result column="order_sn" property="order_sn"></result>
+        <result column="create_time" property="create_time"></result>
+        <result column="total_price" property="total_price"></result>
+        <result column="state" property="state"></result>
+        <result column="customer_id" property="customer_id"></result>
+        <association property="customer" javaType="Customer">
+            <id column="cid" property="id"></id>
+            <result column="cname" property="name"></result>
+        </association>
+    </resultMap>
+
+    <!--    Order findOne(Long id);-->
+    <select id="findOne" resultMap="OrderMap">
+        select o.*,c.id cid,c.name cname from t_order o
+        left join t_customer c on o.customer_id = c.id where o.id=#{id}
+    </select>
+
+    <!--    void add(Order order);-->
+    <insert id="add">
+        insert into t_order (order_sn, create_time, total_price, state, customer_id)
+        values (#{order_sn}, #{create_time}, #{total_price}, #{state}, #{customer_id})
+    </insert>
+
+    <!--    void update(Order order);-->
+    <update id="update">
+        update t_order set order_sn=#{order_sn},total_price=#{total_price},state=#{state},
+                           customer_id=#{customer_id} where id=#{id}
+    </update>
+
+    <!--    void delete(Long id);-->
+
+    <delete id="delete">
+        delete from t_order where id=#{id}
+    </delete>
+
+
+    <!--List<Order> query(OrderQuery orderQuery);-->
+    <select id="query" resultMap="OrderMap">
+        select o.*,c.id cid,c.name cname from t_order o
+        left join t_customer c on o.customer_id = c.id
+        <where>
+            <if test="order_sn != null and order_sn != ''">
+                and o.order_sn like concat('%',#{order_sn},'%')
+            </if>
+            <if test="customer_id != null">
+                and o.customer_id = #{customer_id}
+            </if>
+            <if test="state != null">
+                and o.state = #{state}
+            </if>
+        </where>
+    </select>
+
+</mapper>
