@@ -7,8 +7,12 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+/**
+ * @author Long
+ */
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
+    //登录拦截器
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //有就获取，没有就创建，每一个登录都有唯一对象

@@ -28,8 +28,8 @@
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <!-- SpringBoot2.2.5的版本中Mysql是mysql8.0的，需要手动导入8以下的版本。我们电脑中安装的数据库是mysql5.x的，mysql8.0启动包都不一样，所以需要收到导入5.x的版本。避免链接数据库出现问题 -->
-      <version>5.1.38</version>
+      <!-- 更新为支持MySQL 8.x的版本 -->
+      <version>8.0.28</version>
     </dependency>
     <!-- mybatis与springboot的整合包 -->
     <dependency>

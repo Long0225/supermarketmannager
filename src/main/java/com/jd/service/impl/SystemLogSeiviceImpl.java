@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+/**
+ * @author Long
+ */
 @Service
 public class SystemLogSeiviceImpl implements ISystemLogSeivice {
     @Autowired

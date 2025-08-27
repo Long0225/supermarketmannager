@@ -6,7 +6,9 @@ import com.jd.mapper.AdminMapper;
 import com.jd.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+/**
+ * @author Long
+ */
 @Service
 public class AdminServiceImpl implements IAdminService {
     @Autowired

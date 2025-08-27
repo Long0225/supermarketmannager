@@ -1,7 +1,7 @@
 package com.jd.constant;
 
 /**
- * @author ASUS
+ * @author Long
  */
 public class SystemConstant {
     /**

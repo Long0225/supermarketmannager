@@ -1,7 +1,9 @@
 package com.jd.domain;
 
 import lombok.Data;
-
+/**
+ * @author Long
+ */
 @Data
 public class Admin {
     private Long id;

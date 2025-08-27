@@ -5,7 +5,9 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+/**
+ * @author Long
+ */
 @Data
 public class Customer {
     private Long id;

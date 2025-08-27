@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 /**
+ * @author Long
  * 顾客接口
  */
 @Controller

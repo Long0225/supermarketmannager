@@ -9,22 +9,25 @@
    <select id="findAll" resultType="Customer">
        select * from t_customer
    </select>
-   <!--Customer findOne(Long id);-->
 
+   <!--Customer findOne(Long id);-->
    <select id="findOne" resultType="Customer">
        select * from t_customer where id=#{id}
    </select>
+
     <!--void add(Customer customer);-->
     <insert id="add">
         insert into t_customer (name, phone, address, create_time)
         values (#{name}, #{phone}, #{address}, #{create_time})
     </insert>
+
     <!---void update(Customer customer);-->
     <update id="update">
         update t_customer
         set name = #{name},phone = #{phone},address = #{address},update_time = #{update_time}
         where id=#{id}
     </update>
+
     <!--void delete(Long id);-->
     <delete id="delete">
         delete from t_customer where id = #{id}

@@ -3,7 +3,9 @@ package com.jd.domain;
 import lombok.Data;
 
 import java.util.Date;
-
+/**
+ * @author Long
+ */
 @Data
 public class Supplier {
     private Long id;

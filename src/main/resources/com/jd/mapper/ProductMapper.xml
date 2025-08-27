@@ -23,7 +23,6 @@
         </association>
     </resultMap>
 
-
     <!--id的值保证Mapper接口的方法名一值-->
     <!--List<Order> findAll();-->
     <select id="findAll" resultMap="ProductMap">

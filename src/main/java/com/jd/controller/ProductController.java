@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-
+/**
+ * @author Long
+ */
+//商品
 @Controller
 @RequestMapping("product")
 public class ProductController {

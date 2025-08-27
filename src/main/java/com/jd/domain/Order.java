@@ -5,7 +5,9 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.util.Date;
 
-
+/**
+ * @author Long
+ */
 @Data
 public class Order {
     private Long id;

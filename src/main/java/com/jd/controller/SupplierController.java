@@ -1,6 +1,5 @@
 package com.jd.controller;
 
-import com.jd.domain.Customer;
 import com.jd.domain.Supplier;
 import com.jd.service.ISupplierService;
 import com.jd.service.impl.SupplierServiceImpl;
@@ -11,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-
+/**
+ * @author Long
+ */
 @Controller
 @RequestMapping("/supplier")
 public class SupplierController {

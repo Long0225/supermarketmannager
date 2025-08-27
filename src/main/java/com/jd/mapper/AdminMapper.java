@@ -5,6 +5,5 @@ import com.jd.domain.Customer;
 
 public interface AdminMapper {
     Admin findByUsername(String username);
-
     void update(Admin admin);
 }

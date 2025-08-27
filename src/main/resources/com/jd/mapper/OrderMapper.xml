@@ -46,7 +46,6 @@
         delete from t_order where id=#{id}
     </delete>
 
-
     <!--List<Order> query(OrderQuery orderQuery);-->
     <select id="query" resultMap="OrderMap">
         select o.*,c.id cid,c.name cname from t_order o
