@@ -1,4 +1,6 @@
-# 云枢超市管家
+# 云枢超市管家Java版
+## 该项目里包含数据库SQL文件，导入即用
+## 该项目golang重构版：https://github.com/Long0225/golang_SupermarketManager
 ## 展示
 ### 1.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![登录界面](./img/1.png)
